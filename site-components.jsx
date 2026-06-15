@@ -158,14 +158,12 @@ function Portfolio({ t }) {
           className="gallery"
           style={{
             gridTemplateColumns: "repeat(" + t.galleryCols + ", 1fr)",
-            gridAutoRows: tab === "Portraits" ? "auto" : "230px",
+            gridAutoRows: "auto",
             gap: t.galleryGap + "px",
           }}
         >
           {C.portfolio.slots[tab].map(function (caption, i) {
             const isPortrait = tab === "Portraits";
-            const featClass = " tile-featured";
-            const tileClass = "tile" + (!isPortrait && featured && i === 0 ? featClass : "");
             const src = C.portfolio.srcs && C.portfolio.srcs[tab] && C.portfolio.srcs[tab][i];
             if (isPortrait) {
               return (
@@ -181,14 +179,15 @@ function Portfolio({ t }) {
               );
             }
             return (
-              <image-slot
-                key={prefix + "-" + (i + 1)}
-                id={prefix + "-" + (i + 1)}
-                class={tileClass}
-                shape="rect"
-                placeholder={caption}
-                src={src || undefined}
-              ></image-slot>
+              <div key={prefix + "-" + (i + 1)} className="tile-landscape-wrap">
+                <image-slot
+                  id={prefix + "-" + (i + 1)}
+                  class="tile-landscape-inner"
+                  shape="rect"
+                  placeholder={caption}
+                  src={src || undefined}
+                ></image-slot>
+              </div>
             );
           })}
         </div>
