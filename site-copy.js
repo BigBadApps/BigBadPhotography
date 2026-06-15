@@ -63,7 +63,7 @@ window.SITE_COPY = {
         "images/gallery/port-1.webp",
         "images/gallery/port-2.webp",
         "images/gallery/port-3.webp",
-        "images/gallery/port-4.webp",
+        "images/gallery/port-4b.webp",
         "images/gallery/port-5.webp",
         "images/gallery/port-6.webp",
       ],
