@@ -328,17 +328,15 @@ function Families({ t }) {
 
 /* ---------------- Contact ---------------- */
 
-// To wire the form to actually send emails:
-// 1. Sign up at https://formspree.io (free tier: 50 submissions/month)
-// 2. Create a new form and copy your form ID
-// 3. Replace FORMSPREE_FORM_ID below with your ID (e.g. "xpwlpepr")
-var FORMSPREE_ENDPOINT = "https://formspree.io/f/FORMSPREE_FORM_ID";
+var SUBMIT_ENDPOINT = "https://formsubmit.co/ajax/rburmaster@hotmail.com";
 
 function Contact({ t }) {
   const blank = { name: "", email: "", type: "", date: "", location: "", message: "" };
   const [form, setForm] = React.useState(blank);
   const [errors, setErrors] = React.useState({});
   const [sent, setSent] = React.useState(false);
+  const [sending, setSending] = React.useState(false);
+  const [sendError, setSendError] = React.useState(false);
 
   function set(field) {
     return function (e) {
@@ -364,15 +362,30 @@ function Contact({ t }) {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) er.email = "That email doesn't look quite right.";
     if (!form.message.trim()) er.message = "Even one sentence helps — what are we shooting?";
     setErrors(er);
-    if (Object.keys(er).length === 0) {
-      setSent(true);
-      // Fire-and-forget to Formspree; replace the endpoint above with your real form ID
-      fetch(FORMSPREE_ENDPOINT, {
-        method: "POST",
-        headers: { "Accept": "application/json", "Content-Type": "application/json" },
-        body: JSON.stringify(form)
-      }).catch(function () {});
-    }
+    if (Object.keys(er).length > 0) return;
+    setSending(true);
+    setSendError(false);
+    fetch(SUBMIT_ENDPOINT, {
+      method: "POST",
+      headers: { "Accept": "application/json", "Content-Type": "application/json" },
+      body: JSON.stringify(Object.assign({}, form, {
+        _subject: "New inquiry from " + form.name,
+        _captcha: "false",
+        _template: "table"
+      }))
+    }).then(function (res) {
+      return res.json();
+    }).then(function (data) {
+      setSending(false);
+      if (data && data.success === "true") {
+        setSent(true);
+      } else {
+        setSendError(true);
+      }
+    }).catch(function () {
+      setSending(false);
+      setSendError(true);
+    });
   }
 
   return (
@@ -442,7 +455,14 @@ function Contact({ t }) {
               {errors.message ? <p className="field-error">{errors.message}</p> : null}
             </div>
             <div className="field field-full">
-              <button type="submit" className="btn btn-accent btn-lg btn-submit">{C.contact.submit}</button>
+              <button type="submit" className="btn btn-accent btn-lg btn-submit" disabled={sending}>
+                {sending ? "Sending…" : C.contact.submit}
+              </button>
+              {sendError && (
+                <p className="field-error" style={{marginTop: "12px"}}>
+                  Something went wrong — please try again or email <a href={"mailto:" + C.contact.email}>{C.contact.email}</a> directly.
+                </p>
+              )}
             </div>
           </form>
         )}
