@@ -39,7 +39,8 @@ const HERO_SLIDES = [
       { id: "hero-portrait-3", placeholder: "Drop portrait 3", src: "images/hero-portrait-3.webp" },
     ],
   },
-  { id: "hero-sports", label: "Sports", placeholder: "Drop your Sports hero — peak action, wide crop", src: "images/hero-sports.webp" },
+  { id: "hero-family", label: "Family", placeholder: "Drop your Family hero — candid warmth, wide crop", src: "images/hero-family.jpg" },
+  { id: "hero-sports", label: "Sports", placeholder: "Drop your Sports hero — peak action, wide crop", src: "images/hero-sports.jpg" },
   { id: "hero-events", label: "Events", placeholder: "Drop your Events hero — full-room energy, wide crop", src: "images/hero-events.webp" },
 ];
 
@@ -165,6 +166,7 @@ function Portfolio({ t }) {
             const isPortrait = tab === "Portraits";
             const featClass = " tile-featured";
             const tileClass = "tile" + (!isPortrait && featured && i === 0 ? featClass : "");
+            const src = C.portfolio.srcs && C.portfolio.srcs[tab] && C.portfolio.srcs[tab][i];
             if (isPortrait) {
               return (
                 <div key={prefix + "-" + (i + 1)} className="tile-portrait-wrap">
@@ -173,6 +175,7 @@ function Portfolio({ t }) {
                     class="tile-portrait-inner"
                     shape="rect"
                     placeholder={caption}
+                    src={src || undefined}
                   ></image-slot>
                 </div>
               );
@@ -184,6 +187,7 @@ function Portfolio({ t }) {
                 class={tileClass}
                 shape="rect"
                 placeholder={caption}
+                src={src || undefined}
               ></image-slot>
             );
           })}
@@ -235,6 +239,7 @@ function About({ t }) {
             class="about-slot"
             shape="rect"
             placeholder={C.about.portraitPlaceholder}
+            src="images/about-portrait.jpg"
           ></image-slot>
           <dl className="about-facts">
             {C.about.facts.map(function (f) {

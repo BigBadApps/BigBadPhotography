@@ -58,6 +58,40 @@ window.SITE_COPY = {
         "Drop an event shot — the closing moment",
       ],
     },
+    srcs: {
+      Portraits: [
+        "images/gallery/port-1.jpg",
+        "images/gallery/port-2.jpg",
+        "images/gallery/port-3.jpg",
+        "images/gallery/port-4.jpg",
+        "images/gallery/port-5.jpg",
+        "images/gallery/port-6.jpg",
+      ],
+      Families: [
+        "images/gallery/pfam-1.jpg",
+        "images/gallery/pfam-2.jpg",
+        "images/gallery/pfam-3.jpg",
+        "images/gallery/pfam-4.jpg",
+        "images/gallery/pfam-5.jpg",
+        null,
+      ],
+      Sports: [
+        "images/gallery/sport-1.jpg",
+        "images/gallery/sport-2.jpg",
+        "images/gallery/sport-3.jpg",
+        "images/gallery/sport-4.jpg",
+        "images/gallery/sport-5.jpg",
+        "images/gallery/sport-6.jpg",
+      ],
+      Events: [
+        "images/gallery/event-1.jpg",
+        "images/gallery/event-2.jpg",
+        "images/gallery/event-3.jpg",
+        "images/gallery/event-4.jpg",
+        "images/gallery/event-5.jpg",
+        null,
+      ],
+    },
   },
 
   services: {
