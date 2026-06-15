@@ -229,6 +229,11 @@
       return ['shape', 'radius', 'mask', 'fit', 'position', 'placeholder', 'src', 'id'];
     }
 
+    static get _localOnly() {
+      const h = window.location.hostname;
+      return h === 'localhost' || h === '127.0.0.1';
+    }
+
     constructor() {
       super();
       const root = this.attachShadow({ mode: 'open' });
@@ -385,10 +390,12 @@
         ImageSlot._warned = true;
         console.warn('<image-slot> without an id will not persist its dropped image.');
       }
-      this.addEventListener('dragenter', this);
-      this.addEventListener('dragover', this);
-      this.addEventListener('dragleave', this);
-      this.addEventListener('drop', this);
+      if (ImageSlot._localOnly) {
+        this.addEventListener('dragenter', this);
+        this.addEventListener('dragover', this);
+        this.addEventListener('dragleave', this);
+        this.addEventListener('drop', this);
+      }
       subs.add(this._subFn);
       // width%/height% in _applyView encode the frame aspect at call time —
       // a host resize (responsive grid, pane divider) would stretch the
@@ -404,10 +411,12 @@
 
     disconnectedCallback() {
       subs.delete(this._subFn);
-      this.removeEventListener('dragenter', this);
-      this.removeEventListener('dragover', this);
-      this.removeEventListener('dragleave', this);
-      this.removeEventListener('drop', this);
+      if (ImageSlot._localOnly) {
+        this.removeEventListener('dragenter', this);
+        this.removeEventListener('dragover', this);
+        this.removeEventListener('dragleave', this);
+        this.removeEventListener('drop', this);
+      }
       if (this._ro) { this._ro.disconnect(); this._ro = null; }
       this._exitReframe(false);
     }
@@ -594,7 +603,7 @@
       this._ring.style.display = mask ? 'none' : '';
 
       // Controls and reframe entry gate on this so share links stay read-only.
-      const editable = !!(window.omelette && window.omelette.writeFile);
+      const editable = !!(window.omelette && window.omelette.writeFile) || ImageSlot._localOnly;
       this.toggleAttribute('data-editable', editable);
       this._sub.style.display = editable ? '' : 'none';
 
