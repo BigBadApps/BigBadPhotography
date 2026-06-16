@@ -29,31 +29,31 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "s1Body": "I aim to capture the authentic human in every one of my portraits. All you need to do is be yourself, and I will do my best to ensure I capture the best photos of you being you. Fair warning, I bring a list of dad jokes that will most likely make me laugh more than you.",
   "s2Title": "Families",
   "s2Kicker": "Real families, real moments",
-  "s2Body": "Family sessions are my favorite kind of organized chaos. I don't need everyone looking at the camera at the same time — I need the dog to bolt, the toddler to tip over, the dad to crack a terrible joke. That's the real stuff, and that's what I'm here to catch.",
+  "s2Body": "Family sessions are my favorite kind of organized chaos. I don't need everyone looking at the camera at the same time – I need the dog to bolt, the toddler to tip over, the dad to crack a terrible joke. That's the real stuff, and that's what I'm here to catch.",
   "s3Title": "Sports",
   "s3Kicker": "Peak action, frozen sharp",
-  "s3Body": "I started out my sports photography documenting my kids' adventures — park and rec, club, school sports. I view every game as a story and focus on documenting it as it happens. I always aim to capture at least one great action shot of every player.",
+  "s3Body": "I started out my sports photography documenting my kids' adventures – park and rec, club, school sports. I view every game as a story and focus on documenting it as it happens. I always aim to capture at least one great action shot of every player.",
   "s4Title": "Live Events",
   "s4Kicker": "The whole story, seamlessly",
-  "s4Body": "Need an event photographer? Let's talk. I endeavor to be the fly on the wall with a camera — documenting the story of the event as it happens, from the quiet setup to the full-room peak.",
+  "s4Body": "Need an event photographer? Let's talk. I endeavor to be the fly on the wall with a camera – documenting the story of the event as it happens, from the quiet setup to the full-room peak.",
 
   "aboutHeading": "I enjoy capturing people being people",
   "aboutPara1": "I enjoy documenting people doing their normal thing. I started out capturing photos of my three kids in action during all their daily activities at home, school, sports, music and other things. When they got tired of me pointing my camera at them, I branched out and expanded over time into capturing extended family, friends and neighbors all doing their things.",
   "aboutPara2": "I always aim to be flexible and easy to work with. I'll work within your available budget. And I'll guarantee your satisfaction with the photos I deliver. It's that simple. ",
-  "aboutPara3": "I'm based in Minneapolis and shoot across the Twin Cities metro. If your thing is a bit further out — ask anyway. I like a road trip.",
+  "aboutPara3": "I'm based in Minneapolis and shoot across the Twin Cities metro. If your thing is a bit further out – ask anyway. I like a road trip.",
 
   "processHeading": "Three steps. No surprises.",
   "step1Title": "Consultation & planning",
   "step1Body": "You reach out. We text, hop on a call, or grab a coffee. I learn what you need, we sort the where and when, and you walk away with a clear plan and a clear price.",
   "step2Title": "The shoot",
-  "step2Body": "I show up early, work friendly, and stay out of the way. You focus on being you — I'll handle the light, the timing, and the thousand tiny decisions.",
+  "step2Body": "I show up early, work friendly, and stay out of the way. You focus on being you – I'll handle the light, the timing, and the thousand tiny decisions.",
   "step3Title": "Fast cull & delivery",
-  "step3Body": "Sneak peeks within 48 hours. Your full edited gallery inside a week — not months. Print-ready, share-ready, and yours to keep.",
+  "step3Body": "Sneak peeks within 48 hours. Your full edited gallery inside a week – not months. Print-ready, share-ready, and yours to keep.",
 
   "familiesHeading": "Real families, real moments.",
   "familiesSub": "Every family is its own world. I just show up, pay attention, and let the good stuff happen.",
 
-  "contactSub": "No pressure and no hard sell. Tell me what you've got in mind and I'll come back with availability, ideas, and straight answers on rates — usually within one business day.",
+  "contactSub": "No pressure and no hard sell. Tell me what you've got in mind and I'll come back with availability, ideas, and straight answers on rates – usually within one business day.",
   "contactHeading": "Let's talk.",
 
   "brandName": "Bob",
@@ -284,47 +284,47 @@ function App() {
           onChange={function (v) { setTweak("s1Body", v); }}
         />
         <TweakText
-          label="02 title — Families"
+          label="02 title: Families"
           value={t.s2Title}
           onChange={function (v) { setTweak("s2Title", v); }}
         />
         <TweakText
-          label="02 kicker — Families"
+          label="02 kicker: Families"
           value={t.s2Kicker}
           onChange={function (v) { setTweak("s2Kicker", v); }}
         />
         <TweakText
-          label="02 body — Families"
+          label="02 body: Families"
           value={t.s2Body}
           onChange={function (v) { setTweak("s2Body", v); }}
         />
         <TweakText
-          label="03 title — Sports"
+          label="03 title: Sports"
           value={t.s3Title}
           onChange={function (v) { setTweak("s3Title", v); }}
         />
         <TweakText
-          label="03 kicker — Sports"
+          label="03 kicker: Sports"
           value={t.s3Kicker}
           onChange={function (v) { setTweak("s3Kicker", v); }}
         />
         <TweakText
-          label="03 body — Sports"
+          label="03 body: Sports"
           value={t.s3Body}
           onChange={function (v) { setTweak("s3Body", v); }}
         />
         <TweakText
-          label="04 title — Events"
+          label="04 title: Events"
           value={t.s4Title}
           onChange={function (v) { setTweak("s4Title", v); }}
         />
         <TweakText
-          label="04 kicker — Events"
+          label="04 kicker: Events"
           value={t.s4Kicker}
           onChange={function (v) { setTweak("s4Kicker", v); }}
         />
         <TweakText
-          label="04 body — Events"
+          label="04 body: Events"
           value={t.s4Body}
           onChange={function (v) { setTweak("s4Body", v); }}
         />

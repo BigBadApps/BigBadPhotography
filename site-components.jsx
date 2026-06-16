@@ -39,9 +39,9 @@ const HERO_SLIDES = [
       { id: "hero-portrait-3", placeholder: "Drop portrait 3", src: "images/hero-portrait-3.webp" },
     ],
   },
-  { id: "hero-family", label: "Family", placeholder: "Drop your Family hero — candid warmth, wide crop", src: "images/hero-family.jpg" },
-  { id: "hero-sports", label: "Sports", placeholder: "Drop your Sports hero — peak action, wide crop", src: "images/hero-sports.jpg" },
-  { id: "hero-events", label: "Events", placeholder: "Drop your Events hero — full-room energy, wide crop", src: "images/hero-events.webp" },
+  { id: "hero-family", label: "Family", placeholder: "Drop your Family hero – candid warmth, wide crop", src: "images/hero-family.jpg" },
+  { id: "hero-sports", label: "Sports", placeholder: "Drop your Sports hero – peak action, wide crop", src: "images/hero-sports.jpg" },
+  { id: "hero-events", label: "Events", placeholder: "Drop your Events hero – full-room energy, wide crop", src: "images/hero-events.webp" },
 ];
 
 function Hero({ t }) {
@@ -360,7 +360,7 @@ function Contact({ t }) {
     const er = {};
     if (!form.name.trim()) er.name = "I'd love a name to reply to.";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) er.email = "That email doesn't look quite right.";
-    if (!form.message.trim()) er.message = "Even one sentence helps — what are we shooting?";
+    if (!form.message.trim()) er.message = "Even one sentence helps – what are we shooting?";
     setErrors(er);
     if (Object.keys(er).length > 0) return;
     setSending(true);
@@ -443,7 +443,7 @@ function Contact({ t }) {
             </div>
             <div className="field">
               <label htmlFor="f-date">Date, if you know it</label>
-              <input id="f-date" type="text" value={form.date} onChange={set("date")} placeholder="e.g. Sat, Aug 22 — or 'sometime this fall'" />
+              <input id="f-date" type="text" value={form.date} onChange={set("date")} placeholder="e.g. Sat, Aug 22 – or 'sometime this fall'" />
             </div>
             <div className="field field-full">
               <label htmlFor="f-loc">Location</label>
@@ -451,7 +451,7 @@ function Contact({ t }) {
             </div>
             <div className={"field field-full" + (errors.message ? " has-error" : "")}>
               <label htmlFor="f-msg">Tell me about it</label>
-              <textarea id="f-msg" rows="4" value={form.message} onChange={set("message")} placeholder="The occasion, the vibe, how long you'll need me — whatever you've got."></textarea>
+              <textarea id="f-msg" rows="4" value={form.message} onChange={set("message")} placeholder="The occasion, the vibe, how long you'll need me – whatever you've got."></textarea>
               {errors.message ? <p className="field-error">{errors.message}</p> : null}
             </div>
             <div className="field field-full">
@@ -460,7 +460,7 @@ function Contact({ t }) {
               </button>
               {sendError && (
                 <p className="field-error" style={{marginTop: "12px"}}>
-                  Something went wrong — please try again or email <a href={"mailto:" + C.contact.email}>{C.contact.email}</a> directly.
+                  Something went wrong – please try again or email <a href={"mailto:" + C.contact.email}>{C.contact.email}</a> directly.
                 </p>
               )}
             </div>
