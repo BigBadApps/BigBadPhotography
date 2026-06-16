@@ -12,7 +12,7 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "heroHeadlineSize": 32,
   "heroSubSize": 16,
   "heroHeadline": "Hi, I'm Bob, your friendly neighborhood photographer",
-  "heroSub": "I capture individual and family portraits in addition to sports and other lives events. I'm easy to work with, flexible on budget, and I'll make sure you love the photos.",
+  "heroSub": "I capture individual and family portraits in addition to sports and other live events. I'm easy to work with, flexible on budget, and I'll make sure you love the photos.",
   "ctaLabel": "Let's talk",
   "secondaryCta": "See my work",
 
