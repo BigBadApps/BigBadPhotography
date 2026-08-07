@@ -1,2 +1,5 @@
 .DS_Store
 .claude/
+.omc/
+images/.omc/
+images/.backup-hero-portraits/

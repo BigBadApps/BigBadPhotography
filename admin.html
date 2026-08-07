@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Admin — BigBadPhotography</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root { --accent: #5A8FBA; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Work Sans", sans-serif;
+    background: #101520;
+    color: rgba(255,255,255,.92);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+  .panel {
+    max-width: 640px;
+    width: 100%;
+  }
+  .eyebrow {
+    font: 600 12.5px "Work Sans", sans-serif;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-family: "Newsreader", serif;
+    font-weight: 500;
+    font-size: 36px;
+    margin: 0 0 12px;
+  }
+  p.lede {
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(255,255,255,.65);
+    margin: 0 0 36px;
+    max-width: 52ch;
+  }
+  .group {
+    margin-bottom: 28px;
+  }
+  .group-title {
+    font: 600 13px "Work Sans", sans-serif;
+    color: rgba(255,255,255,.5);
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  a.card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 18px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 10px;
+    text-decoration: none;
+    color: rgba(255,255,255,.92);
+    font: 500 15px "Work Sans", sans-serif;
+    transition: background .15s ease, border-color .15s ease;
+  }
+  a.card:hover {
+    background: rgba(255,255,255,.08);
+    border-color: var(--accent);
+  }
+  a.card .arrow {
+    color: var(--accent);
+    font-size: 18px;
+  }
+  a.card .sub {
+    display: block;
+    font: 400 13px "Work Sans", sans-serif;
+    color: rgba(255,255,255,.5);
+    margin-top: 2px;
+  }
+  .note {
+    margin-top: 36px;
+    padding: 14px 16px;
+    background: rgba(255,255,255,.03);
+    border-left: 2px solid var(--accent);
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(255,255,255,.55);
+  }
+  .back {
+    display: inline-block;
+    margin-top: 28px;
+    font: 500 13px "Work Sans", sans-serif;
+    color: rgba(255,255,255,.4);
+    text-decoration: none;
+  }
+  .back:hover { color: rgba(255,255,255,.7); }
+</style>
+</head>
+<body>
+  <div class="panel">
+    <div class="eyebrow">Admin</div>
+    <h1>BigBadPhotography Dashboard</h1>
+    <p class="lede">
+      Client directory, session tracking, and scheduling live in Airtable.
+      Each link opens the real interface — sign in with your Airtable
+      account to view or edit anything; nothing is exposed on this page.
+    </p>
+
+    <div class="group">
+      <div class="group-title">Interfaces</div>
+      <div class="links">
+        <a class="card" href="https://airtable.com/appKGSN1UtD7sWZ53/pbdhd5jnFkfKhlidg" target="_blank" rel="noopener">
+          <span>Clients<span class="sub">Client directory &amp; session history</span></span>
+          <span class="arrow">&rarr;</span>
+        </a>
+        <a class="card" href="https://airtable.com/appKGSN1UtD7sWZ53/pbd5A0acqyrNXaRTX" target="_blank" rel="noopener">
+          <span>Sessions<span class="sub">Session tracking — invoiced, paid, albums</span></span>
+          <span class="arrow">&rarr;</span>
+        </a>
+        <a class="card" href="https://airtable.com/appKGSN1UtD7sWZ53/pbdJmhzApzql6T61t" target="_blank" rel="noopener">
+          <span>Schedule<span class="sub">Calendar by session type</span></span>
+          <span class="arrow">&rarr;</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="group-title">Quick add</div>
+      <div class="links">
+        <a class="card" href="https://airtable.com/appKGSN1UtD7sWZ53/paghK9Mkmapg98V5o" target="_blank" rel="noopener">
+          <span>Add New Client<span class="sub">Contact + referral info</span></span>
+          <span class="arrow">&rarr;</span>
+        </a>
+        <a class="card" href="https://airtable.com/appKGSN1UtD7sWZ53/pag9tWKAgOIV0SRhy" target="_blank" rel="noopener">
+          <span>New Photo Session<span class="sub">Schedule, pricing, albums</span></span>
+          <span class="arrow">&rarr;</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="group-title">Base</div>
+      <div class="links">
+        <a class="card" href="https://airtable.com/appKGSN1UtD7sWZ53" target="_blank" rel="noopener">
+          <span>BigBadPhotography Dashboard<span class="sub">Full base — all tables &amp; views</span></span>
+          <span class="arrow">&rarr;</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="note">
+      Client names, phone numbers, and emails only ever render inside Airtable's
+      own login-gated interface — this page holds no data, so there is nothing
+      here to leak even if the URL gets shared or indexed.
+    </div>
+
+    <a class="back" href="index.html">&larr; Back to site</a>
+  </div>
+</body>
+</html>
