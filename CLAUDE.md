@@ -26,12 +26,23 @@ metro area. The site is statically hosted on GitHub Pages with no build step.
 ├── site-components.jsx     # One React component per section (Hero, Portfolio, Services, etc.)
 ├── tweaks-panel.jsx        # Floating Tweaks UI + useTweaks hook (design-tool carry-over)
 ├── image-slot.js           # <image-slot> custom element — drag-and-drop image placeholders
+├── manifest.json           # Web app manifest (name, theme color, icons)
 ├── images/
 │   ├── hero-portrait-1.webp   # Hero triptych — left panel (garden portrait)
 │   ├── hero-portrait-2.webp   # Hero triptych — center panel (suited portrait)
 │   ├── hero-portrait-3.webp   # Hero triptych — right panel (steps portrait)
 │   ├── hero-sports.webp       # Sports hero slide background
-│   └── hero-events.webp       # Events hero slide background
+│   ├── hero-events.webp       # Events hero slide background
+│   ├── favicon.ico            # Multi-size favicon (16/32/48), camera mark
+│   └── icons/
+│       ├── icon-square.svg          # Source vector for favicon/app icons
+│       ├── icon-maskable.svg        # Source vector with safe-zone padding for Android maskable icon
+│       ├── favicon-16x16.png
+│       ├── favicon-32x32.png
+│       ├── apple-touch-icon.png     # 180×180, iOS home screen icon
+│       ├── android-chrome-192x192.png
+│       ├── android-chrome-512x512.png
+│       └── maskable-icon-512x512.png
 └── .github/
     └── workflows/
         └── deploy.yml      # GitHub Actions: push to main → deploy to Pages
