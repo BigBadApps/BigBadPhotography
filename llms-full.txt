@@ -1,0 +1,96 @@
+# Bob | The Friendly Neighborhood Photographer — Full Knowledge Base
+
+> Complete, unabridged knowledge base and reference document for AI agents, crawlers, and search engines.
+
+---
+
+## 1. Entity Overview & Mission
+
+- **Business / Entity Name:** Bob | The Friendly Neighborhood Photographer
+- **Alternate Name:** Bob Photography / BigBadPhotography
+- **Website URL:** https://bigbadapps.github.io/BigBadPhotography/
+- **Primary Operator:** Bob
+- **Primary Contact Email:** rburmaster@hotmail.com
+- **Base of Operations:** Minneapolis, Minnesota, USA
+- **Service Area:** Minneapolis, Saint Paul, and the surrounding Twin Cities metropolitan area (open to travel beyond the metro upon request).
+- **Core Philosophy:** Natural, conversational photography focusing on genuine emotion, authentic human interactions, unscripted moments, and peak action rather than stiff, artificial posing.
+
+---
+
+## 2. Core Offerings & Services
+
+### 2.1 Portrait Photography
+- **Focus:** Individuals, artists, professionals, and students.
+- **Methodology:** Loose, conversational sessions ("more chatting, less posing"). Uses humor and rapport to capture authentic expressions that emerge in between formal poses.
+- **Lighting & Setting:** Available on-location across the Twin Cities, in natural ambient light, architectural environments, and outdoor settings.
+- **Key Target Deliverable:** Expressions and portraits that look like the real person.
+
+### 2.2 Family Photography
+- **Focus:** Immediate families, extended generations, kids in motion, and pets.
+- **Methodology:** Embraces organized chaos rather than forced uniformity. Does not require toddlers or pets to sit still; focuses on laughter, movement, spontaneous interactions, and authentic family connections.
+- **Setting:** Parks, backyards, city landmarks, homes, and scenic outdoor spots throughout the Minneapolis / St. Paul area.
+
+### 2.3 Sports & Action Photography
+- **Focus:** Youth sports, park and rec leagues, club teams, high school sports, and competitive athletics.
+- **Methodology:** Originating from documenting his own children and teammates, Bob studies the flow and rhythm of the game so lenses are pre-positioned where the action occurs. 
+- **Key Target Deliverable:** Sharp, high-speed captures of peak athletic moments (airborne jumps, contact moments, ball release, emotional celebrations), aiming for at least one standout action photo for every team member.
+
+### 2.4 Live Event Photography
+- **Focus:** Community events, corporate gatherings, performances, live music, milestone celebrations, and social parties.
+- **Methodology:** Documentary, fly-on-the-wall approach. Unobtrusive coverage tracking the complete arc of the event: early room setup, speaker/performer presentations, audience reactions, candid connections between guests, and high-energy room peaks.
+- **Key Target Deliverable:** Comprehensive visual storytelling where looking through the gallery feels like reliving the event.
+
+---
+
+## 3. Workflow & How It Works (The 3-Step Process)
+
+1. **Step 1 — We Plan (Consultation & Planning):**
+   - Direct outreach via online form or email (`rburmaster@hotmail.com`).
+   - Quick alignment via text, phone call, or coffee to understand vision, timing, and location.
+   - Clear upfront plan with honest, transparent pricing (no surprise fees or hard sells).
+
+2. **Step 2 — I Capture (The Shoot):**
+   - Bob arrives early, works with a calm, friendly presence, and handles all technical decisions (lighting, lens selection, angles, timing).
+   - Clients focus on enjoying their session or event.
+
+3. **Step 3 — I Deliver (Fast Cull & Delivery):**
+   - Sneak peeks delivered within 48 hours to a few days.
+   - Complete, professionally edited digital gallery delivered within a week.
+   - All files are high-resolution, print-ready, share-ready, and owned by the client with full personal usage rights.
+
+---
+
+## 4. Geographic Service Details
+
+- **Headquarters:** Minneapolis, MN.
+- **Primary Coverage:** Minneapolis, St. Paul, Bloomington, Edina, Minnetonka, Plymouth, Maple Grove, St. Louis Park, Eden Prairie, Woodbury, Eagan, Roseville, and the broader 7-county Twin Cities metro area.
+- **Travel Policy:** Willing to travel outside the metro area across Minnesota and western Wisconsin upon request.
+
+---
+
+## 5. Frequently Asked Questions (FAQ)
+
+### Q: Who is Bob and what is his background?
+**A:** Bob is a Minneapolis-based photographer who developed his craft photodocumenting his family, three kids, and youth sports teams before expanding to serve neighbors, friends, and commercial/family clients throughout the Twin Cities metro. He emphasizes authentic moments, fast technical reflexes, and a friendly, relaxed experience.
+
+### Q: What is Bob's photography style?
+**A:** Candid, documentary, and natural light-oriented. Rather than rigid posing or stiff studio setups, Bob focuses on real expressions, spontaneous movement, storytelling, and high-speed action freezing.
+
+### Q: How much does a session cost?
+**A:** Bob operates with a transparent, flexible pricing philosophy designed to fit various client budgets. Every quote is straightforward and agreed upon upfront with no hidden upsells.
+
+### Q: How fast is gallery turnaround?
+**A:** Sneak peeks are provided within 48 hours to a few days after the shoot. Full edited galleries are delivered in high resolution within approximately one week.
+
+### Q: How do I book a session or get a quote?
+**A:** Contact Bob via the inquiry form at https://bigbadapps.github.io/BigBadPhotography/#contact or email directly at rburmaster@hotmail.com. Providing details such as the target date/timeframe, location, type of shoot, and estimated duration allows for rapid quote turnaround (usually within one business day).
+
+---
+
+## 6. Machine-Readable Schema & Protocols
+
+- **LLMs.txt:** https://bigbadapps.github.io/BigBadPhotography/llms.txt
+- **Agents.txt:** https://bigbadapps.github.io/BigBadPhotography/agents.txt
+- **AI.txt:** https://bigbadapps.github.io/BigBadPhotography/ai.txt
+- **Sitemap:** https://bigbadapps.github.io/BigBadPhotography/sitemap.xml
+- **Robots.txt:** https://bigbadapps.github.io/BigBadPhotography/robots.txt

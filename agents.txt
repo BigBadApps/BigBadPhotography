@@ -1,0 +1,31 @@
+site: https://bigbadapps.github.io/BigBadPhotography/
+owner: Bob | The Friendly Neighborhood Photographer
+contact: rburmaster@hotmail.com
+version: 1.0.0
+
+capabilities:
+  - knowledge_retrieval: true
+  - conversational_inquiry: true
+
+protocols:
+  llms_txt:
+    url: https://bigbadapps.github.io/BigBadPhotography/llms.txt
+    full_context: https://bigbadapps.github.io/BigBadPhotography/llms-full.txt
+
+actions:
+  - name: send_booking_inquiry
+    description: Submit a photography inquiry or booking request for portraits, families, sports, or live events in Minneapolis and the Twin Cities metro area.
+    url: https://bigbadapps.github.io/BigBadPhotography/#contact
+    method: POST
+    contact_email: rburmaster@hotmail.com
+    fields:
+      - name: name
+        required: true
+        type: string
+      - name: email
+        required: true
+        type: string
+      - name: message
+        required: true
+        type: string
+        description: Details including target date, location, shoot type (portraits, family, sports, events), and required coverage duration.
