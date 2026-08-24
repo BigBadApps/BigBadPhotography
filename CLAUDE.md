@@ -20,32 +20,48 @@ metro area. The site is statically hosted on GitHub Pages with no build step.
 
 ```
 /
-├── index.html              # HTML shell + all CSS + script loader
-├── site-copy.js            # All static text content (nav labels, section copy, contact info)
+├── index.html              # HTML shell + all CSS + SEO meta + script loader
+├── site-copy.js            # All static text content (nav labels, section copy, gallery srcs)
 ├── site-app.jsx            # React app root: theme vars, Tweaks panel wiring, section assembly
 ├── site-components.jsx     # One React component per section (Hero, Portfolio, Services, etc.)
 ├── tweaks-panel.jsx        # Floating Tweaks UI + useTweaks hook (design-tool carry-over)
 ├── image-slot.js           # <image-slot> custom element — drag-and-drop image placeholders
+├── admin.html              # Admin page (separate from main site)
 ├── manifest.json           # Web app manifest (name, theme color, icons)
+├── robots.txt              # Search engine crawl directives
+├── sitemap.xml             # XML sitemap for search engines
+├── llms.txt                # LLMs.txt summary for AI crawlers
+├── llms-full.txt           # Extended LLMs.txt with full detail
+├── agents.txt              # AI agent instructions file
+├── ai.txt                  # AI-readable site summary
 ├── images/
-│   ├── hero-portrait-1.webp   # Hero triptych — left panel (garden portrait)
-│   ├── hero-portrait-2.webp   # Hero triptych — center panel (suited portrait)
-│   ├── hero-portrait-3.webp   # Hero triptych — right panel (steps portrait)
-│   ├── hero-sports.webp       # Sports hero slide background
+│   ├── hero-portrait-1.jpeg   # Hero triptych — left panel (Topaz-enhanced)
+│   ├── hero-portrait-2.jpeg   # Hero triptych — center panel (Topaz-enhanced)
+│   ├── hero-portrait-3.jpeg   # Hero triptych — right panel (Topaz-enhanced)
+│   ├── hero-family.jpg        # Family hero slide background
+│   ├── hero-sports.jpg        # Sports hero slide background
 │   ├── hero-events.webp       # Events hero slide background
+│   ├── about-portrait.jpg     # About section portrait photo
 │   ├── favicon.ico            # Multi-size favicon (16/32/48), camera mark
+│   ├── gallery/               # Portfolio gallery images (6 per category)
+│   │   ├── port-{1-6}.webp    # Portrait gallery tiles
+│   │   ├── pfam-{1-6}.*      # Family gallery tiles (mix of webp/jpg)
+│   │   ├── sport-{1-6}.*     # Sports gallery tiles (mix of webp/jpg)
+│   │   └── event-{1-6}.*     # Events gallery tiles (mix of webp/jpg)
 │   └── icons/
 │       ├── icon-square.svg          # Source vector for favicon/app icons
-│       ├── icon-maskable.svg        # Source vector with safe-zone padding for Android maskable icon
+│       ├── icon-maskable.svg        # Source vector with safe-zone padding for Android
 │       ├── favicon-16x16.png
 │       ├── favicon-32x32.png
 │       ├── apple-touch-icon.png     # 180×180, iOS home screen icon
 │       ├── android-chrome-192x192.png
 │       ├── android-chrome-512x512.png
 │       └── maskable-icon-512x512.png
-└── .github/
-    └── workflows/
-        └── deploy.yml      # GitHub Actions: push to main → deploy to Pages
+├── .github/
+│   └── workflows/
+│       └── deploy.yml      # GitHub Actions: push to main → deploy to Pages
+└── .claude/
+    └── launch.json         # Dev server config for Claude Code preview
 ```
 
 ---
@@ -76,6 +92,22 @@ accent can be blue, gold, or forest-green.
 
 ---
 
+## SEO and metadata
+
+`index.html` includes:
+- **Open Graph** and **Twitter Card** meta tags (image: `hero-portrait-1.jpeg`)
+- **Schema.org JSON-LD** knowledge graph (LocalBusiness, WebSite, FAQPage)
+- **Geo tags** (Minneapolis coordinates)
+- **Canonical URL** and **sitemap** link
+
+Supporting files:
+- `robots.txt` — allows all crawlers, references sitemap
+- `sitemap.xml` — lists site URL for search engines
+- `llms.txt` / `llms-full.txt` — AI-readable site summaries
+- `agents.txt` / `ai.txt` — AI agent context files
+
+---
+
 ## Sections (in page order)
 
 | Section | Component | Anchor |
@@ -99,8 +131,9 @@ it was removed from the page during design iteration. Delete it when cleaning up
 ### Text / copy
 
 All static text lives in **`site-copy.js`** as `window.SITE_COPY`. Edit that
-file for: nav labels, section eyebrows, portfolio slot placeholders, services
-copy, about facts, process steps, contact help items, footer fine print.
+file for: nav labels, section eyebrows, portfolio slot placeholders, gallery
+image paths (`srcs`), services copy, about facts, process steps, contact help
+items, footer fine print.
 
 Dynamic copy (hero headline, subheadline, CTAs, service body text, about
 paragraphs, process step bodies, contact heading, footer location line) lives in
@@ -111,7 +144,7 @@ Tweaks panel writes back to.
 
 ### Hero images
 
-The hero has three rotating slides: Portraits (triptych), Sports, Events.
+The hero has four rotating slides: Portraits (triptych), Family, Sports, Events.
 
 Image paths are declared in **`site-components.jsx`** in `HERO_SLIDES`:
 
@@ -121,12 +154,13 @@ const HERO_SLIDES = [
     id: "hero-portraits",
     triptych: true,
     slots: [
-      { id: "hero-portrait-1", src: "images/hero-portrait-1.webp" },
-      { id: "hero-portrait-2", src: "images/hero-portrait-2.webp" },
-      { id: "hero-portrait-3", src: "images/hero-portrait-3.webp" },
+      { id: "hero-portrait-1", src: "images/hero-portrait-1.jpeg" },
+      { id: "hero-portrait-2", src: "images/hero-portrait-2.jpeg" },
+      { id: "hero-portrait-3", src: "images/hero-portrait-3.jpeg" },
     ],
   },
-  { id: "hero-sports",  src: "images/hero-sports.webp"  },
+  { id: "hero-family",  src: "images/hero-family.jpg"   },
+  { id: "hero-sports",  src: "images/hero-sports.jpg"   },
   { id: "hero-events",  src: "images/hero-events.webp"  },
 ];
 ```
@@ -137,30 +171,27 @@ here, commit and push.
 **Recommended hero image dimensions:** minimum 1920×960 px, ideally 2400×1200 px,
 JPEG or WebP. The hero renders at roughly 2:1 aspect ratio at 92 vh height.
 
+The portrait triptych images are Topaz-enhanced high-res JPEGs (~740–820 KB each).
+
 ### About portrait
 
-The About section has an `<image-slot id="about-portrait">` with no `src` set —
-it shows a drag-and-drop placeholder. To add a permanent photo:
-
-1. Add the photo to `images/about-portrait.jpg` (or `.webp`)
-2. In `site-components.jsx`, find the `about-portrait` image-slot and add
-   `src="images/about-portrait.jpg"`
+The About section has an `<image-slot id="about-portrait">` with
+`src="images/about-portrait.jpg"` set. To replace: swap the file and update the
+`src` attribute in `site-components.jsx`.
 
 ### Gallery / portfolio photos
 
 The portfolio section has four tabs: Portraits, Families, Sports, Events.
-Each tab has 6 photo slots. Currently all are empty placeholders.
+Each tab has 6 photo slots, all populated with images.
 
-**To add photos permanently (recommended for production):**
-1. Add image files to `images/gallery/portraits/port-1.webp`, `port-2.webp`, etc.
-   (or whatever naming convention you prefer)
-2. In `site-components.jsx`, find the `Portfolio` component and add `src` attributes
-   to the `<image-slot>` elements inside the gallery map.
+Gallery image paths are defined in `site-copy.js` under `window.SITE_COPY.portfolio.srcs`.
+To replace a gallery photo: swap the file in `images/gallery/` and update the
+corresponding path in `site-copy.js`.
 
 **To add photos temporarily (session-only):**
-Drag and drop photos onto the empty tiles in the browser. They are saved to
-IndexedDB in that browser only and persist across refreshes for that browser.
-Other visitors see empty slots.
+Drag and drop photos onto tiles in the browser. They are saved to IndexedDB in
+that browser only and persist across refreshes. Other visitors see the permanent
+`src` images.
 
 ---
 
@@ -245,15 +276,19 @@ repo root as-is.
 
 ## Common tasks for an AI agent
 
-### Add a photo to the gallery
-1. Receive the image file; save to `images/gallery/` (create dir if needed)
-2. In `site-components.jsx`, find the `Portfolio` component
-3. In the gallery map for the relevant tab, add `src="images/gallery/filename.webp"`
-   to the matching `<image-slot>` element
+### Replace a hero image
+1. Add new image file to `images/`
+2. Update the `src` string in `HERO_SLIDES` in `site-components.jsx`
+3. Update OG/Twitter/schema image refs in `index.html` if replacing portrait-1
 4. Commit and push
 
+### Replace a gallery photo
+1. Add new image file to `images/gallery/`
+2. Update the path in `site-copy.js` under `SITE_COPY.portfolio.srcs`
+3. Commit and push
+
 ### Update site copy
-1. For nav, eyebrows, facts, contact help → edit `site-copy.js`
+1. For nav, eyebrows, facts, contact help, gallery paths → edit `site-copy.js`
 2. For headline, subheadline, service descriptions, about paragraphs → edit
    `TWEAK_DEFAULTS` in `site-app.jsx`
 3. Commit and push
@@ -282,7 +317,7 @@ the visual design pixel-for-pixel while adapting the prototype's drag-and-drop
 image slots to use real `src` attributes backed by files in `images/`.
 
 Key design decisions from the design session:
-- Hero: rotating triptych (Portraits) + full-bleed (Sports, Events); crossfade 6s
+- Hero: rotating triptych (Portraits) + full-bleed (Family, Sports, Events); crossfade 6s
 - Portraits gallery: `aspect-ratio: 2/3` tiles for vertical photos
 - Services: 2×2 grid (Portraits, Families, Sports, Events)
 - Contact section: deep forest-green background (`#1F382B`), gold eyebrow
