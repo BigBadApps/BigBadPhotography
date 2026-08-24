@@ -34,9 +34,9 @@ const HERO_SLIDES = [
     label: "Portraits",
     triptych: true,
     slots: [
-      { id: "hero-portrait-1", placeholder: "Drop portrait 1", src: "images/hero-portrait-1.webp" },
-      { id: "hero-portrait-2", placeholder: "Drop portrait 2", src: "images/hero-portrait-2.webp" },
-      { id: "hero-portrait-3", placeholder: "Drop portrait 3", src: "images/hero-portrait-3.webp" },
+      { id: "hero-portrait-1", placeholder: "Drop portrait 1", src: "images/hero-portrait-1.jpeg" },
+      { id: "hero-portrait-2", placeholder: "Drop portrait 2", src: "images/hero-portrait-2.jpeg" },
+      { id: "hero-portrait-3", placeholder: "Drop portrait 3", src: "images/hero-portrait-3.jpeg" },
     ],
   },
   { id: "hero-family", label: "Family", placeholder: "Drop your Family hero – candid warmth, wide crop", src: "images/hero-family.jpg" },
