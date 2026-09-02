@@ -197,7 +197,7 @@ function Hero({ t }) {
         </div>
       </div>
 
-      <div className="hero-scrim" style={{ opacity: (t.heroOverlay || 48) / 100 }}></div>
+      <div className="hero-scrim" style={{ opacity: (t.heroOverlay || 32) / 100 }}></div>
 
       {/* Main Hero Content */}
       <div className="wrap hero-wrap">

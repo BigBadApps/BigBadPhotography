@@ -2,12 +2,12 @@
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "tone": "Dark",
-  "accent": "#E5B842",
+  "accent": "#619AC6",
   "headingScale": 1,
 
   "heroAlign": "left",
   "heroHeight": 94,
-  "heroOverlay": 45,
+  "heroOverlay": 32,
   "heroRotate": 6,
   "heroHeadlineSize": 48,
   "heroSubSize": 17,
@@ -43,7 +43,7 @@ const THEMES = {
     inkSecondary: "#B4B8BC",
     muted: "#7A828A",
     line: "rgba(255, 255, 255, 0.09)",
-    lineHighlight: "rgba(229, 184, 66, 0.35)",
+    lineHighlight: "rgba(97, 154, 198, 0.45)",
     soft: "#101417",
   },
   Light: {
@@ -54,23 +54,25 @@ const THEMES = {
     inkSecondary: "#484E55",
     muted: "#6A727A",
     line: "rgba(0, 0, 0, 0.08)",
-    lineHighlight: "rgba(214, 168, 62, 0.4)",
+    lineHighlight: "rgba(97, 154, 198, 0.45)",
     soft: "#ECEAE4",
   },
 };
 
 const ACCENT_INK = {
-  "#E5B842": "#0F0E0A",
+  "#619AC6": "#FFFFFF",
   "#5A8FBA": "#FFFFFF",
-  "#D6A83E": "#0F0E0A",
+  "#3B82F6": "#FFFFFF",
   "#1F382B": "#FFFFFF",
+  "#D6A83E": "#0F0E0A",
+  "#E5B842": "#0F0E0A",
 };
 
 function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
   const [selectedBookingCategory, setSelectedBookingCategory] = React.useState("Portraits");
   const theme = THEMES[t.tone] || THEMES.Dark;
-  const accentInk = ACCENT_INK[t.accent] || "#0F0E0A";
+  const accentInk = ACCENT_INK[t.accent] || "#FFFFFF";
   const galleryCols = parseInt(t.galleryCols, 10) || 3;
   const tweaks = Object.assign({}, t, { galleryCols: galleryCols });
 
@@ -167,7 +169,7 @@ function App() {
         <TweakColor
           label="Accent Color"
           value={t.accent}
-          options={["#E5B842", "#5A8FBA", "#D6A83E", "#1F382B"]}
+          options={["#619AC6", "#5A8FBA", "#3B82F6", "#1F382B"]}
           onChange={function (v) { setTweak("accent", v); }}
         />
         <TweakSlider
@@ -234,4 +236,5 @@ function App() {
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+
 
