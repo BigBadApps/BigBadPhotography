@@ -76,7 +76,7 @@ function App() {
   const galleryCols = parseInt(t.galleryCols, 10) || 3;
   const tweaks = Object.assign({}, t, { galleryCols: galleryCols });
 
-  // Initialize Lenis Smooth Scroll and GSAP ScrollTrigger Integration
+  // Initialize Lenis Smooth Scroll with Butter-Smooth Easing & Link Interception
   React.useEffect(function () {
     let lenis = null;
     let rafId = null;
@@ -84,47 +84,62 @@ function App() {
     if (window.Lenis && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       try {
         lenis = new window.Lenis({
-          duration: 1.15,
+          duration: 1.2,
           easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
           orientation: "vertical",
+          gestureOrientation: "vertical",
           smoothWheel: true,
-          wheelMultiplier: 1.0,
-          touchMultiplier: 2.0,
+          wheelMultiplier: 0.85,
+          touchMultiplier: 1.5,
+          infinite: false,
         });
+        window.__lenis = lenis;
+
+        function raf(time) {
+          lenis.raf(time);
+          rafId = requestAnimationFrame(raf);
+        }
+        rafId = requestAnimationFrame(raf);
 
         if (window.ScrollTrigger) {
           lenis.on("scroll", window.ScrollTrigger.update);
-          window.gsap.ticker.add(function (time) {
-            lenis.raf(time * 1000);
-          });
-          window.gsap.ticker.lagSmoothing(0);
-        } else {
-          function raf(time) {
-            lenis.raf(time);
-            rafId = requestAnimationFrame(raf);
-          }
-          rafId = requestAnimationFrame(raf);
         }
+
+        // Global anchor click interceptor for silky smooth glide without jumping
+        function handleAnchorClick(e) {
+          const target = e.target.closest("a[href^='#']");
+          if (!target) return;
+          const href = target.getAttribute("href");
+          if (!href || href === "#" || href === "#!") return;
+          const targetElem = document.querySelector(href);
+          if (targetElem) {
+            e.preventDefault();
+            lenis.scrollTo(targetElem, { offset: -24, duration: 1.2 });
+          }
+        }
+        document.addEventListener("click", handleAnchorClick);
+
+        return function () {
+          document.removeEventListener("click", handleAnchorClick);
+          if (lenis) lenis.destroy();
+          if (rafId) cancelAnimationFrame(rafId);
+          window.__lenis = null;
+        };
       } catch (e) {
         console.warn("Smooth scroll initialization notice:", e);
       }
     }
-
-    return function () {
-      if (lenis) {
-        lenis.destroy();
-      }
-      if (rafId) {
-        cancelAnimationFrame(rafId);
-      }
-    };
   }, []);
 
   function handleSelectCategoryForBooking(category) {
     setSelectedBookingCategory(category);
-    const contactElem = document.getElementById("contact");
-    if (contactElem) {
-      contactElem.scrollIntoView({ behavior: "smooth" });
+    if (window.__lenis) {
+      window.__lenis.scrollTo("#contact", { offset: -20, duration: 1.2 });
+    } else {
+      const contactElem = document.getElementById("contact");
+      if (contactElem) {
+        contactElem.scrollIntoView({ behavior: "smooth" });
+      }
     }
   }
 

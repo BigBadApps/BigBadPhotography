@@ -81,9 +81,9 @@ const HERO_SLIDES = [
     subtitle: "Character & Soul",
     triptych: true,
     slots: [
-      { id: "hero-portrait-1", src: "images/hero-portrait-1.jpeg", alt: "Natural outdoor portrait" },
-      { id: "hero-portrait-2", src: "images/hero-portrait-2.jpeg", alt: "Expressive studio portrait" },
-      { id: "hero-portrait-3", src: "images/hero-portrait-3.jpeg", alt: "Candid environmental portrait" },
+      { id: "hero-portrait-1", src: "images/hero-portrait-1.jpeg", alt: "Natural outdoor portrait", position: "center 12%" },
+      { id: "hero-portrait-2", src: "images/hero-portrait-2.jpeg", alt: "Expressive studio portrait", position: "center 12%" },
+      { id: "hero-portrait-3", src: "images/hero-portrait-3.jpeg", alt: "Candid environmental portrait", position: "center 12%" },
     ],
   },
   {
@@ -92,6 +92,7 @@ const HERO_SLIDES = [
     subtitle: "Real Warmth & Chaos",
     src: "images/hero-family.jpg",
     alt: "Joyful family session in natural outdoor light",
+    position: "center 4%", // Keeps heads in back row completely in view
   },
   {
     id: "hero-sports",
@@ -99,6 +100,7 @@ const HERO_SLIDES = [
     subtitle: "Peak Action Frozen",
     src: "images/hero-sports.jpg",
     alt: "High-speed sports action frozen at peak motion",
+    position: "center 15%",
   },
   {
     id: "hero-events",
@@ -106,6 +108,7 @@ const HERO_SLIDES = [
     subtitle: "The Complete Atmosphere",
     src: "images/hero-events.webp",
     alt: "Live event documentary photography",
+    position: "center 22%",
   },
 ];
 
@@ -154,6 +157,7 @@ function Hero({ t }) {
                         src={slot.src}
                         alt={slot.alt}
                         className="hero-img"
+                        style={{ objectPosition: slot.position || "center 12%" }}
                         loading={idx === 0 ? "eager" : "lazy"}
                       />
                       <div className="hero-item-overlay"></div>
@@ -167,6 +171,7 @@ function Hero({ t }) {
                   src={s.src}
                   alt={s.alt}
                   className="hero-img"
+                  style={{ objectPosition: s.position || "center top" }}
                   loading="lazy"
                 />
                 <div className="hero-item-overlay"></div>
@@ -197,31 +202,29 @@ function Hero({ t }) {
         </div>
       </div>
 
-      <div className="hero-scrim" style={{ opacity: (t.heroOverlay || 32) / 100 }}></div>
-
-      {/* Main Hero Content */}
+      {/* Main Hero Content: Docked at bottom to leave subject faces 100% visible */}
       <div className="wrap hero-wrap">
-        <div className={"hero-content" + (t.heroAlign === "center" ? " is-center" : "")}>
+        <div className={"hero-dock-card" + (t.heroAlign === "center" ? " is-center" : "")}>
           <div className="hero-eyebrow-pill">
             <span className="pill-dot"></span>
             <span className="pill-text">{C.hero.tag}</span>
           </div>
 
-          <h1 className="hero-headline" style={{ fontSize: (t.heroHeadlineSize || 48) + "px" }}>
+          <h1 className="hero-headline">
             <span className="headline-main">{C.hero.headlineMain}</span>
             <span className="headline-accent">{C.hero.headlineAccent}</span>
           </h1>
 
-          <p className="hero-sub" style={{ fontSize: (t.heroSubSize || 17) + "px" }}>
+          <p className="hero-sub">
             {t.heroSub || C.hero.sub}
           </p>
 
           <div className="hero-ctas">
-            <a href="#contact" className="btn btn-accent btn-lg hero-cta-main">
+            <a href="#contact" className="btn btn-accent btn-md hero-cta-main">
               <span>{t.ctaLabel || C.hero.primaryCta}</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <a href="#work" className="btn btn-ghost btn-lg hero-cta-sec">
+            <a href="#work" className="btn btn-ghost btn-md hero-cta-sec">
               <span>{t.secondaryCta || C.hero.secondaryCta}</span>
             </a>
           </div>
@@ -238,31 +241,31 @@ function Hero({ t }) {
             })}
           </div>
         </div>
-      </div>
 
-      {/* Interactive Frame Switcher Scrubber */}
-      <div className="hero-scrubber" role="tablist" aria-label="Hero Slide Switcher">
-        {HERO_SLIDES.map(function (s, i) {
-          const isCurrent = i === active;
-          return (
-            <button
-              key={s.id}
-              role="tab"
-              aria-selected={isCurrent}
-              className={"scrubber-btn" + (isCurrent ? " is-active" : "")}
-              onClick={function () { setActive(i); }}
-            >
-              <span className="scrubber-idx">0{i + 1}</span>
-              <span className="scrubber-label">{s.label}</span>
-              <div className="scrubber-bar">
-                <div
-                  className="scrubber-progress"
-                  style={{ width: isCurrent ? "100%" : "0%" }}
-                ></div>
-              </div>
-            </button>
-          );
-        })}
+        {/* Interactive Frame Switcher Scrubber */}
+        <div className="hero-scrubber" role="tablist" aria-label="Hero Slide Switcher">
+          {HERO_SLIDES.map(function (s, i) {
+            const isCurrent = i === active;
+            return (
+              <button
+                key={s.id}
+                role="tab"
+                aria-selected={isCurrent}
+                className={"scrubber-btn" + (isCurrent ? " is-active" : "")}
+                onClick={function () { setActive(i); }}
+              >
+                <span className="scrubber-idx">0{i + 1}</span>
+                <span className="scrubber-label">{s.label}</span>
+                <div className="scrubber-bar">
+                  <div
+                    className="scrubber-progress"
+                    style={{ width: isCurrent ? "100%" : "0%" }}
+                  ></div>
+                </div>
+              </button>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
