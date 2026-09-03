@@ -135,74 +135,98 @@ function Hero({ t }) {
       id="top"
       className="hero"
       data-screen-label="Hero"
-      style={{ minHeight: (t.heroHeight || 92) + "vh" }}
       onMouseEnter={function () { setPaused(true); }}
       onMouseLeave={function () { setPaused(false); }}
     >
-      {/* Background Slides */}
-      {HERO_SLIDES.map(function (s, i) {
-        const isActive = i === active;
-        return (
-          <div
-            key={s.id}
-            className={"hero-slide" + (isActive ? " is-active" : "")}
-            aria-hidden={!isActive}
-          >
-            {s.triptych ? (
-              <div className="hero-triptych">
-                {s.slots.map(function (slot, idx) {
-                  return (
-                    <div key={slot.id} className="hero-triptych-item">
-                      <img
-                        src={slot.src}
-                        alt={slot.alt}
-                        className="hero-img"
-                        style={{ objectPosition: slot.position || "center 12%" }}
-                        loading={idx === 0 ? "eager" : "lazy"}
-                      />
-                      <div className="hero-item-overlay"></div>
-                    </div>
-                  );
-                })}
-              </div>
-            ) : (
-              <div className="hero-single-wrap">
-                <img
-                  src={s.src}
-                  alt={s.alt}
-                  className="hero-img"
-                  style={{ objectPosition: s.position || "center top" }}
-                  loading="lazy"
-                />
-                <div className="hero-item-overlay"></div>
-              </div>
-            )}
+      {/* Visual Showcase Viewport (Houses Photos + Viewfinder HUD) */}
+      <div className="hero-viewport">
+        {/* Background Slides */}
+        {HERO_SLIDES.map(function (s, i) {
+          const isActive = i === active;
+          return (
+            <div
+              key={s.id}
+              className={"hero-slide" + (isActive ? " is-active" : "")}
+              aria-hidden={!isActive}
+            >
+              {s.triptych ? (
+                <div className="hero-triptych">
+                  {s.slots.map(function (slot, idx) {
+                    return (
+                      <div key={slot.id} className="hero-triptych-item">
+                        <img
+                          src={slot.src}
+                          alt={slot.alt}
+                          className="hero-img"
+                          style={{ objectPosition: slot.position || "center 12%" }}
+                          loading={idx === 0 ? "eager" : "lazy"}
+                        />
+                        <div className="hero-item-overlay"></div>
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className="hero-single-wrap">
+                  <img
+                    src={s.src}
+                    alt={s.alt}
+                    className="hero-img"
+                    style={{ objectPosition: s.position || "center top" }}
+                    loading="lazy"
+                  />
+                  <div className="hero-item-overlay"></div>
+                </div>
+              )}
+            </div>
+          );
+        })}
+
+        {/* Viewfinder Camera HUD Overlay */}
+        <div className="hero-viewfinder" aria-hidden="true">
+          <div className="vf-crosshair vf-top-left"></div>
+          <div className="vf-crosshair vf-top-right"></div>
+          <div className="vf-crosshair vf-bottom-left"></div>
+          <div className="vf-crosshair vf-bottom-right"></div>
+          <div className="vf-center-bracket"></div>
+
+          <div className="vf-meta-bar vf-meta-top">
+            <span className="vf-badge"><span className="vf-rec-dot"></span> REC · 24FPS</span>
+            <span className="vf-meta-item">ISO 400 · 1/1000s · f/1.8</span>
+            <span className="vf-meta-item vf-coord">{C.brand.coordinates}</span>
           </div>
-        );
-      })}
 
-      {/* Viewfinder Camera HUD Overlay */}
-      <div className="hero-viewfinder" aria-hidden="true">
-        <div className="vf-crosshair vf-top-left"></div>
-        <div className="vf-crosshair vf-top-right"></div>
-        <div className="vf-crosshair vf-bottom-left"></div>
-        <div className="vf-crosshair vf-bottom-right"></div>
-        <div className="vf-center-bracket"></div>
-
-        <div className="vf-meta-bar vf-meta-top">
-          <span className="vf-badge"><span className="vf-rec-dot"></span> REC · 24FPS</span>
-          <span className="vf-meta-item">ISO 400 · 1/1000s · f/1.8</span>
-          <span className="vf-meta-item vf-coord">{C.brand.coordinates}</span>
+          <div className="vf-meta-bar vf-meta-bottom">
+            <span className="vf-meta-item">FRAME {active + 1} / {HERO_SLIDES.length}</span>
+            <span className="vf-meta-item vf-slide-label">{currentSlide.label} — {currentSlide.subtitle}</span>
+            <span className="vf-meta-item">RAW · 3:2</span>
+          </div>
         </div>
 
-        <div className="vf-meta-bar vf-meta-bottom">
-          <span className="vf-meta-item">FRAME {active + 1} / {HERO_SLIDES.length}</span>
-          <span className="vf-meta-item vf-slide-label">{currentSlide.label} — {currentSlide.subtitle}</span>
-          <span className="vf-meta-item">RAW · 3:2</span>
+        <div className="hero-scrim" style={{ opacity: (t.heroOverlay || 32) / 100 }}></div>
+
+        {/* Mobile Slide Switcher Indicator Pills right on the camera viewport */}
+        <div className="hero-mobile-scrubber" role="tablist" aria-label="Hero Slide Switcher">
+          {HERO_SLIDES.map(function (s, i) {
+            const isCurrent = i === active;
+            return (
+              <button
+                key={s.id}
+                role="tab"
+                aria-selected={isCurrent}
+                aria-label={"Slide " + (i + 1) + ": " + s.label}
+                className={"mobile-scrubber-pill" + (isCurrent ? " is-active" : "")}
+                onClick={function () { setActive(i); }}
+              >
+                <span className="pill-index">0{i + 1}</span>
+                <span className="pill-name">{s.label}</span>
+              </button>
+            );
+          })}
         </div>
       </div>
 
-      {/* Main Hero Content: Docked at bottom to leave subject faces 100% visible */}
+      {/* Main Hero Content (Docked on Desktop, Dedicated Below-Image Flow on Mobile) */}
       <div className="wrap hero-wrap">
         <div className={"hero-dock-card" + (t.heroAlign === "center" ? " is-center" : "")}>
           <div className="hero-eyebrow-pill">
@@ -242,7 +266,7 @@ function Hero({ t }) {
           </div>
         </div>
 
-        {/* Interactive Frame Switcher Scrubber */}
+        {/* Desktop Interactive Frame Switcher Scrubber */}
         <div className="hero-scrubber" role="tablist" aria-label="Hero Slide Switcher">
           {HERO_SLIDES.map(function (s, i) {
             const isCurrent = i === active;
