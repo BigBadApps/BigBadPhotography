@@ -200,7 +200,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Work+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
 
 <!-- Lenis Smooth Scroll -->
 <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
@@ -211,9 +211,9 @@
 <style>
   :root {
     color-scheme: dark light;
-    --font-display: "Syne", "Newsreader", serif;
-    --font-serif: "Newsreader", serif;
-    --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-display: "Newsreader", Georgia, serif;
+    --font-serif: "Newsreader", Georgia, serif;
+    --font-sans: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     --font-mono: "JetBrains Mono", monospace;
   }
 
@@ -307,6 +307,7 @@
   .process-card-desc,
   .lightbox-caption {
     text-wrap: pretty;
+    max-width: 68ch;
   }
 
   .section-heading {
@@ -404,9 +405,9 @@
   }
 
   .btn-accent {
-    background: var(--accent);
-    color: var(--accent-ink);
-    box-shadow: 0 4px 20px rgba(97, 154, 198, 0.28);
+    background: #256794;
+    color: #FFFFFF;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
   }
 
   .btn-ghost {
@@ -419,8 +420,9 @@
   @media (hover: hover) and (pointer: fine) {
     .btn-accent:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(97, 154, 198, 0.45);
-      filter: brightness(1.08);
+      background: #1e5277;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      filter: brightness(1.06);
     }
     .btn-ghost:hover {
       background: rgba(255, 255, 255, 0.12);
@@ -509,14 +511,6 @@
     height: 7px;
     background: #22C55E;
     border-radius: 50%;
-    box-shadow: 0 0 8px #22C55E;
-    animation: pulseGlow 2s infinite;
-  }
-
-  @keyframes pulseGlow {
-    0% { opacity: 0.6; transform: scale(0.95); }
-    50% { opacity: 1; transform: scale(1.15); box-shadow: 0 0 12px #22C55E; }
-    100% { opacity: 0.6; transform: scale(0.95); }
   }
 
   .nav-links {
@@ -545,18 +539,46 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 0;
+    width: 100%;
     height: 2px;
     background: var(--accent);
-    transition: width 0.25s ease;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.25s ease;
   }
 
   .nav-link:hover::after {
-    width: 100%;
+    transform: scaleX(1);
   }
 
   .nav-cta-mobile {
     display: none;
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .theme-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .theme-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: var(--line-highlight);
+    transform: translateY(-1px);
   }
 
   .mobile-toggle {
@@ -656,28 +678,9 @@
     border: 1px solid rgba(255, 255, 255, 0.05);
   }
 
-  .vf-crosshair {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border-color: rgba(255, 255, 255, 0.3);
-    border-style: solid;
-  }
-
-  .vf-top-left { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
-  .vf-top-right { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
-  .vf-bottom-left { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
-  .vf-bottom-right { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
-
+  .vf-crosshair,
   .vf-center-bracket {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 50px;
-    height: 50px;
-    border: 1px dashed rgba(255, 255, 255, 0.15);
-    border-radius: 50%;
+    display: none;
   }
 
   .vf-meta-bar {
@@ -694,7 +697,7 @@
   }
 
   .vf-meta-top { top: 16px; }
-  .vf-meta-bottom { bottom: 16px; }
+  .vf-meta-bottom { display: none; }
 
   .vf-rec-dot {
     display: inline-block;
@@ -703,12 +706,6 @@
     background: #EF4444;
     border-radius: 50%;
     margin-right: 6px;
-    animation: recBlink 1.5s infinite;
-  }
-
-  @keyframes recBlink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.2; }
   }
 
   /* Soft Bottom Gradient Scrim: leaves upper 75% photo crystal clear */
@@ -735,8 +732,8 @@
 
   .hero-dock-card {
     position: relative;
-    max-width: 440px;
-    background: rgba(11, 13, 14, 0.72);
+    max-width: 480px;
+    background: rgba(11, 13, 14, 0.94);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     padding: 24px 26px;
@@ -774,7 +771,7 @@
     font-family: var(--font-mono);
     font-size: 11.5px;
     color: var(--accent);
-    letter-spacing: 0.08em;
+    letter-spacing: 0.03em;
     font-weight: 500;
   }
 
@@ -795,17 +792,19 @@
     font-family: var(--font-serif);
     font-style: italic;
     font-weight: 400;
-    background: linear-gradient(135deg, #A8D1F0 0%, #619AC6 50%, #3D759F 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--accent);
   }
 
   .hero-sub {
-    font-size: 13.5px;
-    line-height: 1.5;
-    color: rgba(243, 242, 238, 0.84);
-    margin-bottom: 18px;
-    max-width: 400px;
+    font-family: var(--font-display);
+    font-size: clamp(19px, 2vw, 22px);
+    line-height: 1.4;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    color: #F3F2EE;
+    margin-bottom: 20px;
+    max-width: 440px;
+    text-wrap: balance;
   }
 
   .hero-ctas {
@@ -814,6 +813,10 @@
     gap: 10px;
     margin-bottom: 18px;
     flex-wrap: wrap;
+  }
+
+  .hero-ctas:last-child {
+    margin-bottom: 0;
   }
 
   .hero-stats {
@@ -840,7 +843,7 @@
 
   .hero-stat-item .stat-label {
     font-family: var(--font-sans);
-    font-size: 11px;
+    font-size: 12px;
     color: var(--muted);
     font-weight: 500;
   }
@@ -899,9 +902,11 @@
   }
 
   .scrubber-progress {
+    width: 100%;
     height: 100%;
     background: var(--accent);
-    transition: width 6s linear;
+    transform-origin: left center;
+    transition: transform 6s linear;
   }
 
   /* ---- Section Base ---- */
@@ -917,7 +922,7 @@
   .section-head-flex {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
     gap: 32px;
     margin-bottom: 48px;
     flex-wrap: wrap;
@@ -1297,26 +1302,10 @@
     overflow: hidden;
   }
 
-  .service-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
   .service-card:hover {
     transform: translateY(-4px);
     border-color: var(--line-highlight);
     box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
-  }
-
-  .service-card:hover::before {
-    opacity: 1;
   }
 
   .service-card-top {
@@ -1344,6 +1333,36 @@
     text-transform: uppercase;
     letter-spacing: 0.1em;
     white-space: nowrap;
+  }
+
+  .service-card-rate {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 16px;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    width: fit-content;
+  }
+
+  .rate-amount {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--accent);
+  }
+
+  .rate-dot {
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  .rate-label {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 500;
   }
 
   .service-card-tagline {
@@ -1374,7 +1393,7 @@
     font-family: var(--font-mono);
     font-size: 11px;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.05em;
     color: var(--muted);
     margin-bottom: 12px;
   }
@@ -1471,9 +1490,9 @@
     top: 12px;
     right: 12px;
     font-family: var(--font-mono);
-    font-size: 10px;
-    color: rgba(255, 255, 255, 0.7);
-    letter-spacing: 0.1em;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.85);
+    letter-spacing: 0.04em;
     background: rgba(0, 0, 0, 0.5);
     padding: 4px 8px;
     border-radius: 4px;
@@ -1514,10 +1533,10 @@
   }
 
   .about-quote-box {
-    padding: 24px;
-    border-left: 3px solid var(--accent);
-    background: rgba(97, 154, 198, 0.08);
-    border-radius: 0 12px 12px 0;
+    padding: 24px 28px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
     margin: 24px 0 32px;
     width: 100%;
     box-sizing: border-box;
@@ -1565,7 +1584,7 @@
     font-family: var(--font-mono);
     font-size: 11px;
     color: var(--accent);
-    letter-spacing: 0.08em;
+    letter-spacing: 0.03em;
   }
 
   /* ---- Process Section ---- */
@@ -1989,7 +2008,7 @@
     font-size: 12px;
     color: var(--accent);
     margin-bottom: 8px;
-    white-space: nowrap;
+    word-break: break-word;
   }
 
   .footer-motto {
@@ -2238,7 +2257,7 @@
 
     .mobile-scrubber-pill .pill-index {
       font-family: var(--font-mono);
-      font-size: 9.5px;
+      font-size: 11.5px;
       color: var(--muted);
       font-weight: 600;
     }
@@ -2254,7 +2273,7 @@
     .mobile-scrubber-pill.is-active {
       background: rgba(97, 154, 198, 0.28);
       border-color: var(--accent);
-      box-shadow: 0 0 12px rgba(97, 154, 198, 0.35);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
     }
 
     .mobile-scrubber-pill.is-active .pill-index {
@@ -2308,11 +2327,15 @@
     }
 
     .hero-sub {
-      font-size: 14.5px;
-      line-height: 1.55;
-      color: var(--ink-sec);
-      margin-bottom: 22px;
+      font-family: var(--font-display);
+      font-size: clamp(18px, 5.2vw, 21px);
+      line-height: 1.38;
+      font-weight: 400;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+      margin-bottom: 20px;
       max-width: 100%;
+      text-wrap: balance;
       display: block;
     }
 
@@ -2346,7 +2369,7 @@
     }
 
     .hero-stat-item .stat-label {
-      font-size: 10.5px;
+      font-size: 11.5px;
       color: var(--muted);
     }
 

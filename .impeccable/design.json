@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-09T06:32:45Z",
+  "title": "Design System: Bob Photography",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Minnesota Sky Blue",
+        "canonical": "#619AC6",
+        "tonalRamp": ["#162531", "#213749", "#2D4C64", "#3D759F", "#619AC6", "#8BB6D8", "#B5D2EA", "#E2EFF9"]
+      },
+      "primary-dark": {
+        "role": "primary",
+        "displayName": "Deep Water Blue",
+        "canonical": "#3D759F",
+        "tonalRamp": ["#0E1C27", "#192F40", "#274862", "#3D759F", "#5D92BA", "#84B0D2", "#B1CDE6", "#E1EDF7"]
+      },
+      "bg-dark": {
+        "role": "neutral",
+        "displayName": "Darkroom Obsidian",
+        "canonical": "#0B0D0E",
+        "tonalRamp": ["#000000", "#0B0D0E", "#15191C", "#20252A", "#333A42", "#525D69", "#7D8C9B", "#B8C1CB"]
+      },
+      "card-dark": {
+        "role": "neutral",
+        "displayName": "Negative Carrier Card",
+        "canonical": "#181D21",
+        "tonalRamp": ["#0B0D0F", "#111417", "#181D21", "#22292E", "#303A42", "#485661", "#6C7F8E", "#A0B1BF"]
+      },
+      "text-dark": {
+        "role": "neutral",
+        "displayName": "Silver Bromide Ink",
+        "canonical": "#F3F2EE",
+        "tonalRamp": ["#464542", "#676561", "#8C8983", "#B5B2AC", "#DDD9D2", "#F3F2EE", "#F9F8F6", "#FFFFFF"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero and major section titles" },
+      "headline": { "displayName": "Headline", "purpose": "Sub-headers and modal titles" },
+      "title": { "displayName": "Title", "purpose": "Service card headers and feature callouts" },
+      "body": { "displayName": "Body", "purpose": "Narrative paragraphs, about story, and FAQ" },
+      "label": { "displayName": "Label", "purpose": "Pills, tags, metadata, and status badges" }
+    },
+    "shadows": [
+      { "name": "subtle-lift", "value": "0 4px 20px rgba(0, 0, 0, 0.25)", "purpose": "Sticky nav scroll and hovering pills" },
+      { "name": "card-elevation", "value": "0 20px 48px rgba(0, 0, 0, 0.4)", "purpose": "Card lift on hover and modals" },
+      { "name": "focus-ring", "value": "0 0 0 3px rgba(97, 154, 198, 0.25)", "purpose": "Accessible zero-blur focus indicator" }
+    ],
+    "motion": [
+      { "name": "fast-interactive", "value": "160ms cubic-bezier(0.23, 1, 0.32, 1)", "purpose": "Button and chip transforms" },
+      { "name": "smooth-card", "value": "300ms ease", "purpose": "Card hover transitions" },
+      { "name": "smooth-scroll", "value": "1200ms cubic-bezier(0.1, 1, 0.1, 1)", "purpose": "Lenis inertia scroll" }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1240px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Accent Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Primary conversion CTA for booking sessions and inquiries.",
+      "html": "<button class=\"ds-btn-primary\">Book a Session</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; padding: 13px 26px; border-radius: 999px; background: #619AC6; color: #FFFFFF; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 600; border: none; cursor: pointer; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 160ms ease, box-shadow 160ms ease; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25); } .ds-btn-primary:hover { transform: translateY(-2px); background: #3D759F; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35); } .ds-btn-primary:active { transform: scale(0.97); }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary exploratory button for portfolio exploration.",
+      "html": "<button class=\"ds-btn-ghost\">Explore Portfolio ↓</button>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; justify-content: center; padding: 13px 26px; border-radius: 999px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.15); color: #F3F2EE; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; backdrop-filter: blur(8px); transition: all 160ms ease; } .ds-btn-ghost:hover { background: rgba(255, 255, 255, 0.12); border-color: rgba(255, 255, 255, 0.25); transform: translateY(-2px); }"
+    },
+    {
+      "name": "Shoot Selection Chip",
+      "kind": "chip",
+      "refersTo": "chip-shoot",
+      "description": "Pill selector for choosing photography shoot discipline.",
+      "html": "<button class=\"ds-shoot-chip is-selected\"><span class=\"ds-chip-dot\"></span>Family Session</button>",
+      "css": ".ds-shoot-chip { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 999px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); color: #F3F2EE; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s ease; } .ds-shoot-chip.is-selected { background: #619AC6; color: #FFFFFF; border-color: #619AC6; font-weight: 600; } .ds-chip-dot { width: 6px; height: 6px; border-radius: 50%; background: #FFFFFF; }"
+    },
+    {
+      "name": "Service Card",
+      "kind": "card",
+      "refersTo": "card-service",
+      "description": "Container presenting service offerings, features, and target audience.",
+      "html": "<div class=\"ds-service-card\"><div class=\"ds-card-head\"><span>01</span><h3>Individual Portraits</h3></div><p>The real you, without the awkwardness.</p></div>",
+      "css": ".ds-service-card { background: #181D21; border: 1px solid rgba(255, 255, 255, 0.09); border-radius: 16px; padding: 40px; color: #F3F2EE; font-family: 'Plus Jakarta Sans', sans-serif; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; } .ds-service-card:hover { transform: translateY(-4px); border-color: rgba(97, 154, 198, 0.45); box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4); } .ds-card-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; } .ds-card-head h3 { font-size: 20px; font-weight: 600; margin: 0; } .ds-card-head span { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #619AC6; }"
+    },
+    {
+      "name": "Form Input Field",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Accessible form input control with dark translucent fill.",
+      "html": "<input class=\"ds-input-control\" type=\"text\" placeholder=\"Your Full Name\" />",
+      "css": ".ds-input-control { width: 100%; background: rgba(0, 0, 0, 0.25); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 8px; padding: 14px 18px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; color: #F3F2EE; outline: none; transition: border-color 0.2s ease, box-shadow 0.2s ease; } .ds-input-control:focus { border-color: #619AC6; box-shadow: 0 0 0 3px rgba(97, 154, 198, 0.25); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Atmospheric Film Darkroom & Editorial Chronicle",
+    "overview": "Bob Photography’s design system bridges the tactile gravitas of fine-art darkroom craft with modern digital fluidity. Grounded in unposed, unscripted storytelling across the Minneapolis–St. Paul metro area, the interface exists to serve the photograph first: deep tonal foundations, controlled ambient lighting, generous spatial breathing room, and intentional editorial typography.",
+    "keyCharacteristics": [
+      "Photocentric Primacy: Backgrounds and framing recede to let unscripted photography command emotional resonance.",
+      "Dual-Tonal Depth: Built around a darkroom foundation (#0B0D0E) with an architectural companion light tone (#F7F6F2).",
+      "Editorial Micro-Pacing: Smooth scroll transitions, balanced headline wrapping, and clear typographic hierarchy.",
+      "Direct Affordances: Pill-shaped tactile interactive elements with immediate interactive feedback."
+    ],
+    "rules": [
+      {
+        "name": "The Photo-First Contrast Rule",
+        "body": "UI chrome must never compete with image saturation or brightness. Accent color is restricted to ≤8% of total viewport area.",
+        "section": "colors"
+      },
+      {
+        "name": "The No-Colored-Glow Rule",
+        "body": "Shadows must remain neutral black/grey ambient occlusion (rgba(0, 0, 0, 0.4)). Zero-offset colored glow halos on buttons or cards are strictly prohibited.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Editorial Accent Rule",
+        "body": "When headlines contain italicized emphasis, render them in genuine serif italics (Newsreader), never skewed sans-serif.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-at-Rest Rule",
+        "body": "All cards and containers sit flat at rest with 1px border separation (var(--line)). Elevation and lift occur exclusively on interactive hover, focus, or active states.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do prioritize photograph viewing area and clarity above decorative UI chrome.",
+      "Do preserve 100% natural, unforced copywriting tone ('The friendly neighborhood photographer').",
+      "Do maintain full personal print rights and 48-hour sneak peek guarantees prominently.",
+      "Do ensure all form inputs carry accessible <label> associations and WCAG AA contrast."
+    ],
+    "donts": [
+      "Don't use synthetic gradient text fills on headings.",
+      "Don't apply colored neon glow shadows to dark backgrounds.",
+      "Don't simulate liveness with arbitrary pulsing radar dots on static dates or availability.",
+      "Don't hide base pricing or session investment tiers from prospective clients."
+    ]
+  }
+}

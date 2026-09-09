@@ -5,7 +5,7 @@ const C = window.SITE_COPY;
 
 /* ---------------- Nav ---------------- */
 
-function SiteNav({ t }) {
+function SiteNav({ t, tone, onToggleTone }) {
   const [scrolled, setScrolled] = React.useState(false);
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -54,6 +54,21 @@ function SiteNav({ t }) {
         </nav>
 
         <div className="nav-actions">
+          {onToggleTone && (
+            <button
+              type="button"
+              className="theme-toggle-btn"
+              aria-label={tone === "Dark" ? "Switch to Daylight light theme" : "Switch to Darkroom dark theme"}
+              title={tone === "Dark" ? "Switch to Daylight light theme" : "Switch to Darkroom dark theme"}
+              onClick={onToggleTone}
+            >
+              {tone === "Dark" ? (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+              ) : (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+              )}
+            </button>
+          )}
           <a href="#contact" className="btn btn-accent nav-cta">{C.nav.cta}</a>
           <button
             type="button"
@@ -218,7 +233,6 @@ function Hero({ t }) {
                 className={"mobile-scrubber-pill" + (isCurrent ? " is-active" : "")}
                 onClick={function () { setActive(i); }}
               >
-                <span className="pill-index">0{i + 1}</span>
                 <span className="pill-name">{s.label}</span>
               </button>
             );
@@ -229,15 +243,7 @@ function Hero({ t }) {
       {/* Main Hero Content (Docked on Desktop, Dedicated Below-Image Flow on Mobile) */}
       <div className="wrap hero-wrap">
         <div className={"hero-dock-card" + (t.heroAlign === "center" ? " is-center" : "")}>
-          <div className="hero-eyebrow-pill">
-            <span className="pill-dot"></span>
-            <span className="pill-text">{C.hero.tag}</span>
-          </div>
 
-          <h1 className="hero-headline">
-            <span className="headline-main">{C.hero.headlineMain}</span>
-            <span className="headline-accent">{C.hero.headlineAccent}</span>
-          </h1>
 
           <p className="hero-sub">
             {t.heroSub || C.hero.sub}
@@ -253,17 +259,7 @@ function Hero({ t }) {
             </a>
           </div>
 
-          {/* Quick Reassurance Stats */}
-          <div className="hero-stats">
-            {C.hero.stats.map(function (stat, i) {
-              return (
-                <div key={i} className="hero-stat-item">
-                  <span className="stat-num">{stat.num}</span>
-                  <span className="stat-label">{stat.label}</span>
-                </div>
-              );
-            })}
-          </div>
+
         </div>
 
         {/* Desktop Interactive Frame Switcher Scrubber */}
@@ -283,7 +279,7 @@ function Hero({ t }) {
                 <div className="scrubber-bar">
                   <div
                     className="scrubber-progress"
-                    style={{ width: isCurrent ? "100%" : "0%" }}
+                    style={{ transform: isCurrent ? "scaleX(1)" : "scaleX(0)" }}
                   ></div>
                 </div>
               </button>
@@ -416,8 +412,6 @@ function Portfolio({ t, onSelectCategoryForBooking }) {
               <span className="eyebrow-accent-line"></span>
               <p className="eyebrow accent">{C.portfolio.eyebrow}</p>
             </div>
-            <h2 className="section-heading">{t.portfolioHeading || C.portfolio.heading}</h2>
-            <p className="section-sub">{t.portfolioSub || C.portfolio.sub}</p>
           </div>
 
           {/* Filter Pills */}
@@ -505,8 +499,6 @@ function Services({ t, onSelectCategoryForBooking }) {
             <span className="eyebrow-accent-line"></span>
             <p className="eyebrow accent">{C.services.eyebrow}</p>
           </div>
-          <h2 className="section-heading">{t.servicesHeading || C.services.heading}</h2>
-          <p className="section-sub center">{C.services.sub}</p>
         </div>
 
         <div className="services-deck">
@@ -517,6 +509,14 @@ function Services({ t, onSelectCategoryForBooking }) {
                   <span className="service-card-num">{s.num}</span>
                   <span className="service-card-cat">{s.title}</span>
                 </div>
+
+                {s.pricing && (
+                  <div className="service-card-rate">
+                    <span className="rate-amount">{s.pricing}</span>
+                    <span className="rate-dot">·</span>
+                    <span className="rate-label">All-inclusive</span>
+                  </div>
+                )}
 
                 <h3 className="service-card-tagline">{s.tagline}</h3>
                 <p className="service-card-body">{s.body}</p>
@@ -633,38 +633,7 @@ function About({ t }) {
   );
 }
 
-/* ---------------- Process ---------------- */
 
-function Process({ t }) {
-  return (
-    <section id="process" className="section process-section section-ruled" data-screen-label="Process">
-      <div className="wrap">
-        <div className="section-head-center">
-          <div className="section-eyebrow-wrap center">
-            <span className="eyebrow-accent-line"></span>
-            <p className="eyebrow accent">{C.process.eyebrow}</p>
-          </div>
-          <h2 className="section-heading">{t.processHeading || C.process.heading}</h2>
-        </div>
-
-        <div className="process-timeline">
-          {C.process.steps.map(function (st, idx) {
-            return (
-              <div key={st.step} className="process-card">
-                <div className="process-card-step">
-                  <span className="step-number">{st.step}</span>
-                  <div className="step-glow"></div>
-                </div>
-                <h3 className="process-card-title">{st.title}</h3>
-                <p className="process-card-desc">{st.desc}</p>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 /* ---------------- FAQ ---------------- */
 
@@ -1026,7 +995,7 @@ function SiteFooter({ t }) {
           </div>
 
           <div className="footer-nav-col">
-            <span className="footer-col-title">Disciplines</span>
+            <span className="footer-col-title">Session Offerings</span>
             <ul className="footer-links">
               <li><a href="#work">Portraits</a></li>
               <li><a href="#work">Family Sessions</a></li>
@@ -1055,5 +1024,5 @@ function SiteFooter({ t }) {
   );
 }
 
-Object.assign(window, { SiteNav, Hero, Portfolio, Lightbox, Services, About, Process, FAQ, Contact, SiteFooter });
+Object.assign(window, { SiteNav, Hero, Portfolio, Lightbox, Services, About, FAQ, Contact, SiteFooter });
 
