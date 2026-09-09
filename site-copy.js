@@ -13,9 +13,8 @@ window.SITE_COPY = {
   nav: {
     links: [
       { label: "Portfolio", href: "#work" },
-      { label: "Services", href: "#services" },
+      { label: "Offerings", href: "#services" },
       { label: "About", href: "#about" },
-      { label: "Process", href: "#process" },
       { label: "FAQ", href: "#faq" },
     ],
     cta: "Book a Shoot",
@@ -26,7 +25,7 @@ window.SITE_COPY = {
     eyebrow: "Portraits · Families · Sports · Live Events",
     headlineMain: "Unscripted Moments.",
     headlineAccent: "Frozen Sharp.",
-    sub: "Natural light, genuine laughter, and split-second athletic action across the Minneapolis & St. Paul metro. No stiff poses. No hidden fees. Just real life captured honestly.",
+    sub: "Capturing genuine photos of humans being their genuine selves across the Twin Cities for over a\u00A0decade.",
     primaryCta: "Book a Session",
     secondaryCta: "Explore Portfolio ↓",
     stats: [
@@ -37,7 +36,7 @@ window.SITE_COPY = {
   },
 
   portfolio: {
-    eyebrow: "Curated Portfolio",
+    eyebrow: "My Portfolio",
     heading: "Four Disciplines. One Uncompromising Eye.",
     sub: "Every frame captures an unrepeatable second — authentic smiles, dynamic athletic motion, and the electricity of live gatherings.",
     tabs: ["All", "Portraits", "Families", "Sports", "Events"],
@@ -293,7 +292,7 @@ window.SITE_COPY = {
   },
 
   services: {
-    eyebrow: "Disciplines & Offerings",
+    eyebrow: "Session Offerings",
     heading: "Tailored for Real Moments, Not Stiff Poses.",
     sub: "Whether you need a compelling individual portrait, a joyful family session, or high-octane sports coverage, every package includes upfront transparent pricing, quick sneak peeks, and high-res digital files.",
     items: [
@@ -301,6 +300,7 @@ window.SITE_COPY = {
         num: "01",
         id: "portraits",
         title: "Individual Portraits",
+        pricing: "Starting at $325",
         tagline: "The real you, without the awkwardness.",
         body: "Great portraits happen when you forget the camera exists. We'll talk, joke, wander an inspiring location, and capture the natural expressions that define who you are.",
         features: ["60–90 min session", "20+ edited high-res images", "Multiple outfit & look changes", "Print rights included"],
@@ -310,6 +310,7 @@ window.SITE_COPY = {
         num: "02",
         id: "families",
         title: "Family Sessions",
+        pricing: "Starting at $395",
         tagline: "Organized chaos, beautifully documented.",
         body: "Kids running around, spontaneous tickle fights, real laughter. I don't force everyone to freeze and say cheese; I document your family's real dynamic as it naturally unfolds.",
         features: ["60 min session", "40+ edited high-res images", "Outdoor park or in-home lifestyle", "Fast 48h preview gallery"],
@@ -319,6 +320,7 @@ window.SITE_COPY = {
         num: "03",
         id: "sports",
         title: "Sports & Action",
+        pricing: "Starting at $275",
         tagline: "Peak athletic intensity, frozen sharp.",
         body: "From youth leagues and high school championships to club tournaments, I track the rhythm of the game so the lens is already waiting where the decisive play occurs.",
         features: ["Full game or meet coverage", "Individual athlete action focus", "High-speed burst capture", "Team packages available"],
@@ -328,6 +330,7 @@ window.SITE_COPY = {
         num: "04",
         id: "events",
         title: "Live Events & Gatherings",
+        pricing: "Starting at $200 / hr",
         tagline: "The complete story from doors opening to final toast.",
         body: "Unobtrusive documentary coverage that captures both major milestones and subtle in-between interactions without interrupting the natural flow of your event.",
         features: ["Hourly & full-day coverage", "Comprehensive storytelling arc", "Quick turnaround for PR/social", "High-res & web-optimized downloads"],
@@ -338,11 +341,10 @@ window.SITE_COPY = {
 
   about: {
     eyebrow: "Behind the Lens",
-    heading: "Nosy about people, obsessed with split-second timing.",
+    heading: "Obsessed with capturing genuine photos",
     body: [
       "I fell in love with photography while documenting the wild, nonstop adventures of my own family and three kids across sports, school, music, and everyday life.",
       "When my kids got tired of me pointing a lens at them, I began helping friends, neighbors, and local teams document their milestones. That passion grew into Bob Photography.",
-      "My technical reflex allows me to adapt immediately to changing lighting and fast-moving action so that on shoot day, I can focus entirely on being present and making people feel relaxed.",
     ],
     badges: [
       { label: "Location", value: "Minneapolis, MN" },

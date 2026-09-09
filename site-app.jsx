@@ -2,7 +2,7 @@
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "tone": "Dark",
-  "accent": "#619AC6",
+  "accent": "#63A4D6",
   "headingScale": 1,
 
   "heroAlign": "left",
@@ -12,7 +12,7 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "heroHeadlineSize": 48,
   "heroSubSize": 17,
   "heroHeadline": "Unscripted Moments. Frozen Sharp.",
-  "heroSub": "Natural light, genuine laughter, and split-second athletic action across the Minneapolis & St. Paul metro. No stiff poses. No hidden fees. Just real life captured honestly.",
+  "heroSub": "Capturing genuine photos of humans being their genuine selves across the Twin Cities for over a\u00A0decade.",
   "ctaLabel": "Book a Session",
   "secondaryCta": "Explore Portfolio ↓",
 
@@ -23,8 +23,7 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "portfolioHeading": "Four Disciplines. One Uncompromising Eye.",
   "portfolioSub": "Every frame captures an unrepeatable second — authentic smiles, dynamic athletic motion, and the electricity of live gatherings.",
 
-  "servicesHeading": "Tailored for Real Moments, Not Stiff Poses.",
-  "aboutHeading": "Nosy about people, obsessed with split-second timing.",
+  "aboutHeading": "Obsessed with capturing genuine photos",
   "processHeading": "Effortless from First Message to Final Gallery.",
   "contactHeading": "Let's Create Something Memorable.",
   "contactSub": "Tell me about your idea, target date, and what you're hoping to capture. I'll get back to you within 24 hours with availability and simple pricing.",
@@ -41,9 +40,9 @@ const THEMES = {
     cardBg: "#181D21",
     ink: "#F3F2EE",
     inkSecondary: "#B4B8BC",
-    muted: "#7A828A",
+    muted: "#9098A2",
     line: "rgba(255, 255, 255, 0.09)",
-    lineHighlight: "rgba(97, 154, 198, 0.45)",
+    lineHighlight: "rgba(42, 110, 157, 0.45)",
     soft: "#101417",
   },
   Light: {
@@ -52,14 +51,15 @@ const THEMES = {
     cardBg: "#F0EFEB",
     ink: "#171A1C",
     inkSecondary: "#484E55",
-    muted: "#6A727A",
+    muted: "#5A626A",
     line: "rgba(0, 0, 0, 0.08)",
-    lineHighlight: "rgba(97, 154, 198, 0.45)",
+    lineHighlight: "rgba(42, 110, 157, 0.45)",
     soft: "#ECEAE4",
   },
 };
 
 const ACCENT_INK = {
+  "#2A6E9D": "#FFFFFF",
   "#619AC6": "#FFFFFF",
   "#5A8FBA": "#FFFFFF",
   "#3B82F6": "#FFFFFF",
@@ -143,6 +143,10 @@ function App() {
     }
   }
 
+  function handleToggleTone() {
+    setTweak("tone", t.tone === "Dark" ? "Light" : "Dark");
+  }
+
   const vars = {
     "--bg": theme.bg,
     "--surface": theme.surface,
@@ -161,13 +165,12 @@ function App() {
 
   return (
     <div className="site" style={vars}>
-      <SiteNav t={tweaks} />
+      <SiteNav t={tweaks} tone={t.tone} onToggleTone={handleToggleTone} />
       <main>
         <Hero t={tweaks} />
         <Portfolio t={tweaks} onSelectCategoryForBooking={handleSelectCategoryForBooking} />
         <Services t={tweaks} onSelectCategoryForBooking={handleSelectCategoryForBooking} />
         <About t={tweaks} />
-        <Process t={tweaks} />
         <FAQ />
         <Contact t={tweaks} preselectedCategory={selectedBookingCategory} />
       </main>
