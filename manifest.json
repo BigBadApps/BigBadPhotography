@@ -1,7 +1,7 @@
 {
   "name": "Bob | The Friendly Neighborhood Photographer",
   "short_name": "Bob Photography",
-  "description": "Bob is a Minneapolis-based photographer specializing in portraits, families, sports, and live events across the Twin Cities metro.",
+  "description": "Capturing genuine photos of humans being their genuine selves across the Twin Cities for over a decade.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
