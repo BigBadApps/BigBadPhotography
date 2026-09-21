@@ -683,7 +683,9 @@ function FAQ() {
 
 /* ---------------- Interactive Contact & Booking Studio ---------------- */
 
-var SUBMIT_ENDPOINT = "https://formsubmit.co/ajax/rburmaster@hotmail.com";
+var SUBMIT_ENDPOINT = "https://api.web3forms.com/submit";
+// Web3Forms access keys are public by design (locked to the registered inbox).
+var WEB3FORMS_ACCESS_KEY = "55b079a5-c797-426b-940b-92db1bcc8101";
 
 function Contact({ t, preselectedCategory }) {
   const blank = {
@@ -739,13 +741,12 @@ function Contact({ t, preselectedCategory }) {
     setSending(true);
     setSendError(false);
 
-    // FormData (multipart) + Accept only = CORS "simple request": no OPTIONS preflight.
-    // FormSubmit's preflight intermittently 522s without CORS headers, which blocks the POST.
+    // FormData + Accept only = CORS "simple request": no OPTIONS preflight.
     const body = new FormData();
     Object.keys(form).forEach(function (k) { body.append(k, form[k]); });
-    body.append("_subject", "✨ New Booking Request from " + form.name + " (" + form.shootType + ")");
-    body.append("_captcha", "false");
-    body.append("_template", "table");
+    body.append("access_key", WEB3FORMS_ACCESS_KEY);
+    body.append("from_name", form.name);
+    body.append("subject", "New Booking Request from " + form.name + " (" + form.shootType + ")");
 
     fetch(SUBMIT_ENDPOINT, {
       method: "POST",
