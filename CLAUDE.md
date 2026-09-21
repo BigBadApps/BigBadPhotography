@@ -239,19 +239,14 @@ in-memory only; to persist them, edit `TWEAK_DEFAULTS` in `site-app.jsx`.
 ## Contact form
 
 The form validates three required fields (name, email, message) client-side,
-then fires a `POST` to Formspree in the background.
+then `POST`s FormData to Web3Forms (`https://api.web3forms.com/submit`), which
+emails `rburmaster@hotmail.com`. The access key (`WEB3FORMS_ACCESS_KEY` in
+`site-components.jsx`) is public by design. To change the inbox or key, get a new
+key at https://web3forms.com and replace the constant. Free tier: 250 submissions/month.
 
-**To wire the form to actually send emails:**
-1. Sign up at https://formspree.io (free tier: 50 submissions/month)
-2. Create a new form pointing to `rburmaster@hotmail.com`
-3. Copy the form ID (looks like `xpwlpepr`)
-4. In `site-components.jsx`, replace `FORMSPREE_FORM_ID` on line ~331:
-   ```js
-   var FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_ACTUAL_ID";
-   ```
-5. Commit and push
+The request is deliberately a CORS "simple request" (FormData, `Accept` header only)
+so the browser sends no preflight.
 
-Until the real ID is set, the form shows a success message but no email is sent.
 Direct email (`rburmaster@hotmail.com`) is shown as a fallback in the Contact section.
 
 ---
