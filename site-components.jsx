@@ -739,14 +739,18 @@ function Contact({ t, preselectedCategory }) {
     setSending(true);
     setSendError(false);
 
+    // FormData (multipart) + Accept only = CORS "simple request": no OPTIONS preflight.
+    // FormSubmit's preflight intermittently 522s without CORS headers, which blocks the POST.
+    const body = new FormData();
+    Object.keys(form).forEach(function (k) { body.append(k, form[k]); });
+    body.append("_subject", "✨ New Booking Request from " + form.name + " (" + form.shootType + ")");
+    body.append("_captcha", "false");
+    body.append("_template", "table");
+
     fetch(SUBMIT_ENDPOINT, {
       method: "POST",
-      headers: { "Accept": "application/json", "Content-Type": "application/json" },
-      body: JSON.stringify(Object.assign({}, form, {
-        _subject: "✨ New Booking Request from " + form.name + " (" + form.shootType + ")",
-        _captcha: "false",
-        _template: "table",
-      })),
+      headers: { "Accept": "application/json" },
+      body: body,
     })
       .then(function (res) { return res.json(); })
       .then(function (data) {
